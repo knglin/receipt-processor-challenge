@@ -8,6 +8,39 @@ Provide any instructions required to run your application.
 
 Data does not need to persist when your application stops. It is sufficient to store information in memory. There are too many different database solutions, we will not be installing a database on our system when testing your application.
 
+# How to call the receipts: Example using the terminal
+1. Call on terminal:
+```json
+curl -X POST http://localhost:8080/receipts/process -d '{                          
+  "retailer": "M&M Corner Market",
+  "purchaseDate": "2022-03-20",
+  "purchaseTime": "14:33",           
+  "items": [         
+    {  
+      "shortDescription": "Gatorade",
+      "price": "2.25"
+    },{
+      "shortDescription": "Gatorade",
+      "price": "2.25"
+    },{
+      "shortDescription": "Gatorade",
+      "price": "2.25"
+    },{
+      "shortDescription": "Gatorade",
+      "price": "2.25"
+    }'
+```
+2. It will output the unique receipt id in the form:
+```json
+{ "id": "348e5d53-4d3f-4cfd-b684-d542063e21a" }
+```
+3. To get the amount of points, call the following with the id in between receipts/ and /points:
+```json
+curl http://localhost:8080/receipts/348e5d53-4d3f-4cfd-b684-d542063e21ab/points 
+```
+4. It will output the amount of points
+
+
 ## Language Selection
 
 You can assume our engineers have Go and Docker installed to run your application. Go is our preferred language, but it is not a requirement for this exercise. If you are not using Go, include a Dockerized setup to run the code. You should also provide detailed instructions if your Docker file requires any additional configuration to run the application.
